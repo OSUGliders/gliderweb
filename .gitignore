@@ -1,6 +1,8 @@
 __pycache__/
 *.py[cod]
 myenv/
+/virtualEnv/
+/static/
 .DS_Store
 .vscode/
 .env

@@ -1,0 +1,171 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Glider Research Group - OSU</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+      }
+
+      header {
+        background-color: #123456;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav {
+        background: #eee;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        margin: 10px;
+        text-decoration: none;
+        color: #123456;
+        font-weight: bold;
+      }
+
+      section {
+        padding: 40px 20px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      h2 {
+        color: #123456;
+        margin-bottom: 15px;
+      }
+
+      footer {
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9em;
+        color: #777;
+      }
+
+      .logo {
+        width: 120px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="{% static 'images/osu_logo.png' %}"
+        alt="OSU Logo"
+        style="height: 50px"
+      />
+      <h1>Glider Research Group</h1>
+      <p>College of Oceanic & Atmospheric Sciences, Oregon State University</p>
+    </header>
+
+    <nav>
+      <a href="#slocum">Slocum Gliders</a>
+      <a href="#seagliders">SeaGliders</a>
+      <a href="#stats">Glider Stats</a>
+      <a href="#animations">Flight Animations</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#people">People</a>
+      <a href="#links">Links</a>
+      <a href="#funding">Funding</a>
+    </nav>
+
+    <section id="slocum">
+      <h2>Slocum Gliders</h2>
+      <p>
+        Information about Slocum Gliders, their capabilities, and current
+        deployments.
+      </p>
+    </section>
+
+    <section id="seagliders">
+      <h2>SeaGliders</h2>
+      <p>Details on SeaGlider deployments and performance metrics.</p>
+    </section>
+
+    <section id="stats">
+      <h2>Cumulative Glider Statistics</h2>
+      <p>
+        Summary of mission stats, total dives, distances traveled, etc. (This
+        can be interactive using Plotly charts.)
+      </p>
+    </section>
+
+    <section id="animations">
+      <h2>Glider Flight Animations</h2>
+      <p>
+        Time-lapse animations of past glider missions using mapping tools like
+        Leaflet or Plotly.
+      </p>
+    </section>
+
+    <section id="map">
+      <h2>Live Glider Map</h2>
+      <p>Click below to view the full map in a new tab.</p>
+      <a href="{% url 'glider_map' %}" target="_blank">
+        <button>Open Glider Map</button>
+      </a>
+    </section>
+
+    <section id="projects">
+      <h2>Research Projects</h2>
+      <p>
+        Explore ongoing and completed research initiatives using underwater
+        gliders.
+      </p>
+    </section>
+
+    <section id="publications">
+      <h2>Publications & Outreach</h2>
+      <p>
+        Academic publications, conference posters, and public outreach
+        materials.
+      </p>
+    </section>
+
+    <section id="people">
+      <h2>People</h2>
+      <p>
+        Meet the researchers, students, and staff involved in the Glider
+        Research Group.
+      </p>
+    </section>
+
+    <section id="links">
+      <h2>Useful Links</h2>
+      <ul>
+        <li>
+          <a href="https://nanuux.uvic.ca/">Collaborating Ocean Networks</a>
+        </li>
+        <li><a href="https://gliders.ioos.us/">IOOS Glider DAC</a></li>
+        <li><a href="https://ceoas.oregonstate.edu/">CEOAS at OSU</a></li>
+      </ul>
+    </section>
+
+    <section id="funding">
+      <h2>Funding & Acknowledgements</h2>
+      <p>
+        Supported by NSF, Moore Foundation, Agouron Institute, and other
+        sponsors.
+      </p>
+      <p><a href="#">Funding Acknowledgment Page</a></p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Glider Research Group – Oregon State University</p>
+      <p>Designed by OSUGliders</p>
+    </footer>
+  </body>
+</html>

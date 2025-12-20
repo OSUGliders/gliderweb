@@ -7,7 +7,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 def glider_map_view(request):
-    return render(request, 'glider_map.html')
+    return render(request, 'gliderdata/glider_map.html')
 def remove_nan(obj):
     if isinstance(obj, float) and (np.isnan(obj) or np.isinf(obj)):
         return None
@@ -73,3 +73,7 @@ def glider_data_to_display(request):
     )
     cleaned_data = remove_nan(data)
     return JsonResponse(cleaned_data, safe=False)
+
+
+def home_page(request):
+    return render(request, "gliderdata/home_page.html")

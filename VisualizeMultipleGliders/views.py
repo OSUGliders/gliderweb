@@ -77,3 +77,24 @@ def glider_data_to_display(request):
 
 def home_page(request):
     return render(request, "gliderdata/home_page.html")
+
+def people(request):
+    return render(request, "gliderdata/people.html")
+
+def projects(request):
+    return render(request, "gliderdata/projects.html")
+
+def slocum(request):
+    return render(request, "gliderdata/slocum.html")
+
+def seaglider(request):
+    return render(request, "gliderdata/seaglider.html")
+
+def statistics(request):
+    return render(request, "gliderdata/statistics.html")
+
+def links(request):
+    return render(request, "gliderdata/links.html")
+
+def publications(request):
+    return render(request, "gliderdata/publications.html")

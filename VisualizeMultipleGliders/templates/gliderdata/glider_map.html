@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta name="csrf-token" content="{{ csrf_token }}" />
@@ -34,20 +34,42 @@
   </head>
 
   <body>
-    <a href="{% url 'home_page' %}" style="text-decoration: none">
+    <div
+      style="
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      "
+    >
+      <a href="{% url 'home_page' %}" style="text-decoration: none">
+        <button
+          style="
+            padding: 8px 16px;
+            background-color: #004b87;
+            color: white;
+            border: none;
+            border-radius: 5px;
+          "
+        >
+          ← Back to Home
+        </button>
+      </a>
       <button
+        id="back-to-map"
         style="
-          margin: 10px;
           padding: 8px 16px;
           background-color: #004b87;
           color: white;
           border: none;
           border-radius: 5px;
+          cursor: pointer;
+          font-size: 14px;
         "
       >
-        ← Back to Home
+        &larr; Back to Map
       </button>
-    </a>
+    </div>
     <div id="map"></div>
 
     <div
@@ -60,10 +82,7 @@
         padding: 20px;
       "
     >
-      <button id="back-to-map" style="float: right; font-size: 10px">
-        &larr; Back to Map
-      </button>
-      <h3>Glider Data Plot</h3>
+      <h3 style="margin-bottom: 20px">Glider Data Plot</h3>
       <label for="x-axis">X-Axis:</label>
       <select id="x-axis">
         <option value="longitude">Longitude</option>
@@ -89,6 +108,7 @@
     <script>
       let selectedGliderId = null;
       let selectedTrack = null;
+      document.getElementById("back-to-map").style.display = "none";
       const map = L.map("map", {
         center: [20, 0],
         zoom: 2,
@@ -109,14 +129,14 @@
         "https://server.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Reference/MapServer/tile/{z}/{y}/{x}",
         {
           attribution: "Tiles &copy; Esri",
-        }
+        },
       );
 
       const mapboxOcean = L.tileLayer(
         "https://server.arcgisonline.com/arcgis/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}",
         {
           attribution: "Tiles &copy; Esri",
-        }
+        },
       );
 
       const oceanWithLabels = L.layerGroup([mapboxOcean, mapboxOSM]);
@@ -155,7 +175,7 @@
             }).addTo(map);
 
             marker.bindPopup(
-              `<b>${gliderId}</b><br><small>${last.time}<br>${last.latitude}, ${last.longitude}</small>`
+              `<b>${gliderId}</b><br><small>${last.time}<br>${last.latitude}, ${last.longitude}</small>`,
             );
 
             marker.on("click", () => {
@@ -200,6 +220,7 @@
           .then((data) => {
             document.getElementById("map").style.display = "none";
             document.getElementById("plot-section").style.display = "block";
+            document.getElementById("back-to-map").style.display = "block";
             const container = document.getElementById("plot-container");
             container.innerHTML = data.plot_html || "<b>No plot returned</b>";
             const scripts = container.getElementsByTagName("script");
@@ -225,6 +246,7 @@
       document.getElementById("back-to-map").onclick = () => {
         document.getElementById("plot-section").style.display = "none";
         document.getElementById("map").style.display = "block";
+        document.getElementById("back-to-map").style.display = "none";
       };
     </script>
   </body>

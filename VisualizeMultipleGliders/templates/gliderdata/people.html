@@ -1,9 +1,348 @@
-{% extends 'gliderdata/base.html' %} {% block content %}
-<section id="people">
-  <h2>People</h2>
-  <p>
-    Meet the researchers, students, and staff involved in the Glider Research
-    Group.
-  </p>
-</section>
+{% extends 'gliderdata/base.html' %} {% load static %} {% block extra_head %}
+<style>
+  .people-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #004b87;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin: 0 auto 4rem auto;
+    padding: 20px 0;
+    background-color: #fff;
+  }
+
+  .carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-group 60s linear infinite;
+  }
+
+  .carousel-slide {
+    width: auto;
+    height: 500px;
+    flex-shrink: 0;
+    padding: 0 10px;
+  }
+
+  .carousel-slide img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-slide img:hover {
+    transform: scale(1.02);
+  }
+
+  @keyframes scroll-group {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  .team-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    height: 100%;
+    border: 1px solid #eee;
+  }
+
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  }
+
+  .avatar-placeholder {
+    width: 120px;
+    height: 120px;
+    background-color: #f0f2f5;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #adb5bd;
+  }
+
+  .team-name {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+  }
+
+  .team-role {
+    color: #004b87;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+  }
+
+  .team-bio {
+    color: #6c757d;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container py-5">
+  <div class="people-header">
+    <h1 class="page-title">Meet the Team</h1>
+    <p class="lead text-muted">
+      The researchers, engineers, and students behind the Glider Research Group.
+    </p>
+  </div>
+
+  {% if not group_photos_missing %}
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1527.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1557.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/43784C3A-2BE7-4F8E-9AF8-82DD4674AE39_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/6183ED2E-8B29-45D6-8F6D-0C368686FDBE_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1527.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1557.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/43784C3A-2BE7-4F8E-9AF8-82DD4674AE39_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/6183ED2E-8B29-45D6-8F6D-0C368686FDBE_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row g-4">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold text-dark">Our Members</h2>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Jesse Cusack</h3>
+        <div class="team-role">Assistant Professor</div>
+        <p class="team-bio">
+          Assistant Professor in Physical Oceanography at Oregon State
+          University. Interested in ocean physics over length scales from
+          turbulence (millimeters) to mesoscale eddies (hundreds of kilometers)
+          and their impact on Earth’s climate. My approach combines high
+          resolution in situ observations with numerical simulations. I practice
+          open science by making my analysis and software available online.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Jack Barth</h3>
+        <div class="team-role">Professor</div>
+        <p class="team-bio">
+          Executive Director of the Marine Studies Initiative (MSI) and
+          Professor of Earth, Ocean and Atmospheric Sciences at Oregon State
+          University. Building on a deep history of nationally ranked academic
+          programs, world-leading research and premier facilities in Corvallis
+          and on the coast.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Kipp Shearman</h3>
+        <div class="team-role">Professor</div>
+        <p class="team-bio">
+          My research interest is the study of physical processes in coastal
+          ocean. Big, small, long, short, high-frequency, low-frequency,
+          stratified, unstratified, rotating, nonrotating, forced, unforced,
+          surface, bottom, middle – I don’t care. If it’s physics and coastal,
+          I’m interested. I am most interested in understanding the dynamics of
+          the evolving structure of the density field over the shelf.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Pat Welch</h3>
+        <div class="team-role">Research Collaborator</div>
+        <p class="team-bio">
+          Is a physicist currently focused on the study of energetic marine
+          environments, including phenomena such as topographic wakes. He earned
+          a Ph.D. in Physics from the University of Virginia and an M.S. in
+          Mathematics from George Washington University.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Brian VerWey</h3>
+        <div class="team-role">Senior Faculty Research Assistant I</div>
+        <p class="team-bio">
+          A research assistant at Oregon State University with over 12 years of
+          experience in marine and freshwater ecosystem science. My current work
+          focuses on supporting various projects that investigate nearshore and
+          open ocean physical processes, where I specialize as both a mooring
+          and glider technician.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-md-6 col-lg-4">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Jace Marquardt</h3>
+        <div class="team-role">Faculty Research Assistant</div>
+        <p class="team-bio">
+          Processing large-scale oceanographic datasets for public consumption.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

@@ -62,53 +62,64 @@
 
   .team-card {
     background: white;
-    border-radius: 12px;
-    padding: 30px 20px;
+    border-radius: 10px;
+    padding: 20px 15px;
     text-align: center;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
     height: 100%;
     border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
   }
 
   .team-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   }
 
   .avatar-placeholder {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     background-color: #f0f2f5;
     border-radius: 50%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #adb5bd;
   }
 
+  .avatar-placeholder svg {
+    width: 32px;
+    height: 32px;
+  }
+
   .team-name {
     font-weight: 700;
     color: #2c3e50;
-    margin-bottom: 5px;
-    font-size: 1.25rem;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
   }
 
   .team-role {
     color: #004b87;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .team-bio {
     color: #6c757d;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 10px;
   }
 </style>
 {% endblock %} {% block content %}
@@ -181,7 +192,7 @@
       <h2 class="fw-bold text-dark">Our Members</h2>
     </div>
 
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -200,17 +211,15 @@
         <h3 class="team-name">Jesse Cusack</h3>
         <div class="team-role">Assistant Professor</div>
         <p class="team-bio">
-          Assistant Professor in Physical Oceanography at Oregon State
-          University. Interested in ocean physics over length scales from
-          turbulence (millimeters) to mesoscale eddies (hundreds of kilometers)
-          and their impact on Earth’s climate. My approach combines high
-          resolution in situ observations with numerical simulations. I practice
-          open science by making my analysis and software available online.
+          Assistant Professor in Physical Oceanography at OSU. Studies ocean
+          physics from turbulence to mesoscale eddies and their climate impact.
+          Combines observations with numerical simulations and practices open
+          science.
         </p>
       </div>
     </div>
 
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -230,14 +239,12 @@
         <div class="team-role">Professor</div>
         <p class="team-bio">
           Executive Director of the Marine Studies Initiative (MSI) and
-          Professor of Earth, Ocean and Atmospheric Sciences at Oregon State
-          University. Building on a deep history of nationally ranked academic
-          programs, world-leading research and premier facilities in Corvallis
-          and on the coast.
+          Professor of Earth, Ocean and Atmospheric Sciences at OSU. Leads
+          nationally ranked academic programs and premier research facilities.
         </p>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -256,16 +263,13 @@
         <h3 class="team-name">Kipp Shearman</h3>
         <div class="team-role">Professor</div>
         <p class="team-bio">
-          My research interest is the study of physical processes in coastal
-          ocean. Big, small, long, short, high-frequency, low-frequency,
-          stratified, unstratified, rotating, nonrotating, forced, unforced,
-          surface, bottom, middle – I don’t care. If it’s physics and coastal,
-          I’m interested. I am most interested in understanding the dynamics of
-          the evolving structure of the density field over the shelf.
+          Professor studying physical processes in coastal oceans. Interested in
+          all aspects of coastal physics, with particular focus on the dynamics
+          of density field structure over the continental shelf.
         </p>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -284,15 +288,14 @@
         <h3 class="team-name">Pat Welch</h3>
         <div class="team-role">Research Collaborator</div>
         <p class="team-bio">
-          Is a physicist currently focused on the study of energetic marine
-          environments, including phenomena such as topographic wakes. He earned
-          a Ph.D. in Physics from the University of Virginia and an M.S. in
-          Mathematics from George Washington University.
+          Physicist studying energetic marine environments, including
+          topographic wakes. Ph.D. in Physics from University of Virginia, M.S.
+          in Mathematics from George Washington University.
         </p>
       </div>
     </div>
 
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -311,16 +314,14 @@
         <h3 class="team-name">Brian VerWey</h3>
         <div class="team-role">Senior Faculty Research Assistant I</div>
         <p class="team-bio">
-          A research assistant at Oregon State University with over 12 years of
-          experience in marine and freshwater ecosystem science. My current work
-          focuses on supporting various projects that investigate nearshore and
-          open ocean physical processes, where I specialize as both a mooring
-          and glider technician.
+          Research assistant at OSU with 12+ years in marine and freshwater
+          ecosystem science. Supports nearshore and open ocean projects,
+          specializing in mooring and glider operations.
         </p>
       </div>
     </div>
 
-    <div class="col-md-6 col-lg-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
         <div class="avatar-placeholder">
           <svg
@@ -339,8 +340,108 @@
         <h3 class="team-name">Jace Marquardt</h3>
         <div class="team-role">Faculty Research Assistant</div>
         <p class="team-bio">
-          Processing large-scale oceanographic datasets for public consumption.
+          Faculty Research Assistant at OSU who processes and manages
+          large-scale oceanographic datasets for research accessibility and
+          public comsumption.
         </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Mareike Koerner</h3>
+        <div class="team-role">Postdoc</div>
+        <p class="team-bio"></p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Swathi Gangi</h3>
+        <div class="team-role">Developer</div>
+        <p class="team-bio">
+          M.S. student in Computer Science focused on Generative AI research,
+          software engineering and serving as the Glider Research Group
+          Developer.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold text-dark">Past Students</h2>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Kai-Fu Chang</h3>
+        <div class="team-role">MS</div>
+        <p class="team-bio"></p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Chad Gibson</h3>
+        <div class="team-role">MS</div>
+        <p class="team-bio"></p>
       </div>
     </div>
   </div>

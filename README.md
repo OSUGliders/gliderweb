@@ -34,3 +34,47 @@ Welcome to the Guide! It provides step-by-step instructions on how to set up, co
    pip install -r requirements.txt #To install all the required packages.
    pip install psycopg #To install the PostgreSQL adapter for Python.
    ```
+
+## 2. Database Setup (PostgreSQL)
+
+1. **Install PostgreSQL**:
+   ```bash
+   sudo apt update #Update the package list
+   sudo apt install postgresql postgresql-contrib
+   ```
+2. **Verify Installation**:
+   Confirm the installation was successful:
+   ```bash
+   dpkg -l | grep postgresql
+   ```
+3. **Manage the Database Service**:
+   Start the service and check its status to ensure it is actively running:
+
+   ```bash
+   sudo systemctl start postgresql
+   sudo systemctl status postgresql
+   ```
+
+4. **Initialize Database and User Credentials**:
+   Enter the PostgreSQL interactive terminal:
+
+   ```bash
+   sudo -u postgres psql
+   ```
+
+   At the `postgres=#` prompt, run the following SQL commands to securely provision your application's database. \*
+
+   ```sql
+   CREATE USER "username" WITH PASSWORD "password";
+   CREATE DATABASE "database_name";
+   GRANT ALL PRIVILEGES ON DATABASE "database_name" TO "username";
+   ```
+
+5. **Verify the Database Connection**:
+   Test accessing the database using our newly created credentials:
+   ```bash
+   psql -U "username" -d "database_name"
+   ```
+   Type `\l` (backslash + lowercase L) to list all databases and verify the database is present.
+
+---

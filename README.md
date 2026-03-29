@@ -72,9 +72,50 @@ Welcome to the Guide! It provides step-by-step instructions on how to set up, co
 
 5. **Verify the Database Connection**:
    Test accessing the database using our newly created credentials:
+
    ```bash
    psql -U "username" -d "database_name"
    ```
+
    Type `\l` (backslash + lowercase L) to list all databases and verify the database is present.
 
----
+6. **Troubleshooting Database Access**:
+   Only if the database connection fails, manually reset the schema ownership:
+
+   ```bash
+   sudo -u postgres psql -d "database_name"
+   ```
+
+   Drop and recreate the public schema:
+
+   ```sql
+   DROP SCHEMA public CASCADE;
+   CREATE SCHEMA public AUTHORIZATION "username";
+   ```
+
+## 3. Environment Variables
+
+Use `.env.example` as a template (which is present inside the gliderweb repo) and store actual values in a new `.env` file.
+(You can also use the copyable template provided in Step 2 below).
+
+1. Copy template to active file:
+   ```bash
+   cp .env.example .env
+   nano .env
+   ```
+2. Add your server configuration variables (replace placeholder values with your actual values):
+   ```env
+   SECRET_KEY="your_django_secret_key"
+   # Use True for local development; set False in production
+   DEBUG=True
+   DB_NAME="database_name"
+   DB_USER="username"
+   DB_PASSWORD="password"
+   # Database host
+   DB_HOST="localhost"
+   # Example for production domain
+   GLIDER_HOST_DOMAIN="glider.example.com"
+   # Default PostgreSQL port
+   DB_PORT="5432"
+   ```
+3. Save the file and exit (Ctrl + O, Enter, then Ctrl + X).

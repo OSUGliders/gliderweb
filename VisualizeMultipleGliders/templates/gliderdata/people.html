@@ -96,6 +96,16 @@
     height: 32px;
   }
 
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
   .team-name {
     font-weight: 700;
     color: #2c3e50;
@@ -194,20 +204,11 @@
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Jesse_img.png' %}"
+          alt="Jesse Cusack"
+          class="avatar-img"
+        />
         <h3 class="team-name">Jesse Cusack</h3>
         <div class="team-role">Assistant Professor</div>
         <p class="team-bio">
@@ -221,20 +222,11 @@
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Jack_img.png' %}"
+          alt="Jack Barth"
+          class="avatar-img"
+        />
         <h3 class="team-name">Jack Barth</h3>
         <div class="team-role">Professor</div>
         <p class="team-bio">
@@ -246,20 +238,11 @@
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Kipp_img.png' %}"
+          alt="Kipp Shearman"
+          class="avatar-img"
+        />
         <h3 class="team-name">Kipp Shearman</h3>
         <div class="team-role">Professor</div>
         <p class="team-bio">
@@ -271,20 +254,11 @@
     </div>
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Pat_img.png' %}"
+          alt="Pat Welch"
+          class="avatar-img"
+        />
         <h3 class="team-name">Pat Welch</h3>
         <div class="team-role">Research Collaborator</div>
         <p class="team-bio">
@@ -297,20 +271,28 @@
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Stuart_img.png' %}"
+          alt="Stuart Pearce"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Stuart Pearce</h3>
+        <div class="team-role">Senior Faculty Research Assistant II</div>
+        <p class="team-bio">
+          Senior Technician for the OOI with expertise in operational
+          oceanography, instrument operations, and glider fleet management. Has
+          worked with the Ocean Observatories Initiative since 2011.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Brian_img.png' %}"
+          alt="Brian VerWey"
+          class="avatar-img"
+        />
         <h3 class="team-name">Brian VerWey</h3>
         <div class="team-role">Senior Faculty Research Assistant I</div>
         <p class="team-bio">
@@ -323,46 +305,27 @@
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Jace_img.png' %}"
+          alt="Jace Marquardt"
+          class="avatar-img"
+        />
         <h3 class="team-name">Jace Marquardt</h3>
         <div class="team-role">Faculty Research Assistant</div>
         <p class="team-bio">
-          Faculty Research Assistant at OSU who processes and manages
-          large-scale oceanographic datasets for research accessibility and
-          public comsumption.
+          Processes large-scale oceanographic datasets for public consumption
+          and research accessibility.
         </p>
       </div>
     </div>
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Mareike_img.png' %}"
+          alt="Mareike Koerner"
+          class="avatar-img"
+        />
         <h3 class="team-name">Mareike Koerner</h3>
         <div class="team-role">Postdoc</div>
         <p class="team-bio"></p>
@@ -371,26 +334,16 @@
 
     <div class="col-12 col-sm-6 col-md-4 col-lg-3">
       <div class="team-card">
-        <div class="avatar-placeholder">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="48"
-            fill="currentColor"
-            class="bi bi-person-fill"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-          </svg>
-        </div>
+        <img
+          src="{% static 'images/people/individual_pictures/Swathi_img.png' %}"
+          alt="Swathi Gangi"
+          class="avatar-img"
+        />
         <h3 class="team-name">Swathi Gangi</h3>
         <div class="team-role">Developer</div>
         <p class="team-bio">
-          M.S. student in Computer Science focused on Generative AI research,
-          software engineering and serving as the Glider Research Group
-          Developer.
+          M.S. student in Computer Science focused on Generative AI research and
+          software engineering. Developer for the Glider Research Group.
         </p>
       </div>
     </div>

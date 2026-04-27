@@ -1,186 +1,164 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Glider Research Group - OSU</title>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glider Research Group - OSU</title>
 
-    <style>
-      body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-      header {
-        background-color: #123456;
-        /* Keep original dark blue */
-        color: white;
-      }
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-      .navbar {
-        background-color: #eee;
-      }
+    header {
+      background-color: #123456;
+      color: white;
+    }
 
-      .navbar-light .navbar-nav .nav-link {
-        color: #123456;
-        font-weight: bold;
-      }
+    .navbar {
+      background-color: #eee;
+    }
 
-      .navbar-light .navbar-nav .nav-link:hover {
-        background-color: #ddd;
-        border-radius: 5px;
-      }
+    .navbar-light .navbar-nav .nav-link {
+      color: #123456;
+      font-weight: bold;
+    }
 
-      footer {
-        background-color: #f4f4f4;
-        color: #777;
-        margin-top: auto;
-      }
+    .navbar-light .navbar-nav .nav-link:hover {
+      background-color: #ddd;
+      border-radius: 5px;
+    }
 
-      .hero {
-        height: 60vh;
-        background: url('{% static "images/hero_glider.png" %}') no-repeat
-          center center/cover;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        text-align: center;
-        width: 100%;
-      }
+    footer {
+      background-color: #f4f4f4;
+      color: #777;
+      margin-top: auto;
+    }
 
-      .hero h1 {
-        font-size: 3em;
-        margin: 0;
-        font-weight: bold;
-      }
+    .hero {
+      height: 60vh;
+      background: url('{% static "images/hero_glider.png" %}') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      text-align: center;
+      width: 100%;
+    }
 
-      .hero p {
-        font-size: 1.5em;
-      }
-    </style>
-    {% block extra_head %} {% endblock %}
-  </head>
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+      font-weight: bold;
+    }
 
-  <body>
-    <header class="text-center py-4">
-      <div class="container">
-        <a
-          href="{% url 'home_page' %}"
-          class="text-decoration-none text-white d-flex flex-column align-items-center"
-        >
-          <img
-            src="{% static 'images/osu_logo.png' %}"
-            alt="OSU Logo"
-            class="img-fluid mb-2"
-            style="height: 80px"
-          />
-          <h1 class="h2 m-0 mt-2">Glider Research Group</h1>
-        </a>
-        <p class="lead mb-0 mt-2 fs-6">
+    .hero p {
+      font-size: 1.5em;
+    }
+
+    .github-link {
+      transition: color 0.3s ease;
+    }
+
+    .github-link:hover {
+      color: #333 !important;
+      opacity: 0.7;
+    }
+  </style>
+  {% block extra_head %} {% endblock %}
+</head>
+
+<body>
+  <header class="py-3">
+    <div class="container position-relative d-flex justify-content-center align-items-center" style="min-height: 80px;">
+      <a href="{% url 'home_page' %}" class="position-absolute start-0 text-decoration-none">
+        <img src="{% static 'images/osu_logo_transparent.png' %}?v=3" alt="OSU Logo" class="img-fluid"
+          style="height: 75px" />
+      </a>
+
+      <div class="text-white text-center">
+        <h1 class="h2 m-0 font-weight-bold">Glider Research Group</h1>
+        <p class="lead mb-0 mt-2 fs-6" style="opacity: 0.9;">
           College of Oceanic & Atmospheric Sciences, Oregon State University
         </p>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <nav class="navbar navbar-expand-md navbar-light shadow-sm sticky-top">
-      <div class="container">
-        <button
-          class="navbar-toggler mx-auto"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link px-3" href="{% url 'people' %}">People</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-3" href="{% url 'projects' %}">Projects</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle px-3"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Gliders
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a class="dropdown-item" href="{% url 'slocum' %}">Slocum</a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'seaglider' %}"
-                    >Seaglider</a
-                  >
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'statistics' %}"
-                    >Statistics</a
-                  >
-                </li>
-                <li>
-                  <hr class="dropdown-divider" />
-                </li>
-                <li>
-                  <a class="dropdown-item" href="{% url 'links' %}"
-                    >Useful links</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-3" href="{% url 'publications' %}"
-                >Publications</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link px-3"
-                href="{% url 'glider_map' %}"
-                target="_blank"
-                >Map</a
-              >
-            </li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-md navbar-light shadow-sm sticky-top">
+    <div class="container">
+      <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{% url 'people' %}">People</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{% url 'projects' %}">Projects</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle px-3" href="#" id="navbarDropdown" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Gliders
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="{% url 'slocum' %}">Slocum</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'seaglider' %}">Seaglider</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'statistics' %}">Statistics</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'links' %}">Useful links</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{% url 'publications' %}">Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-3" href="{% url 'glider_map' %}" target="_blank">Map</a>
+          </li>
+        </ul>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    {% block hero %} {% endblock %}
+  {% block hero %} {% endblock %}
 
-    <div class="container my-5">{% block content %} {% endblock %}</div>
+  <div class="container my-5">{% block content %} {% endblock %}</div>
 
-    <footer class="text-center py-4 border-top">
-      <div class="container">
-        <p class="mb-1">
-          &copy; 2025 Glider Research Group – Oregon State University
-        </p>
-        <p class="small mb-0">Designed by OSUGliders</p>
-      </div>
-    </footer>
+  <footer class="text-center py-4 border-top">
+    <div class="container d-flex flex-column align-items-center">
+      <span class="text-muted mb-2">
+        &copy; 2025 Glider Research Group &ndash; Oregon State University
+      </span>
+      <a href="https://github.com/OSUGliders" target="_blank" rel="noopener noreferrer"
+        class="text-dark github-link mb-2" aria-label="GitHub Profile">
+        <i class="fab fa-github fa-2x"></i>
+      </a>
+      <span class="small text-muted mb-0">Designed by OSUGliders</span>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
 </html>

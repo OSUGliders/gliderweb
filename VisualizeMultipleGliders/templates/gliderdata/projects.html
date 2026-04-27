@@ -1,13 +1,22 @@
 {% extends 'gliderdata/base.html' %} {% load static %} {% block extra_head %}
 <style>
   .project-section {
-    margin-bottom: 5rem;
-    padding-bottom: 3rem;
-    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .project-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
   }
 
   .project-section:last-child {
-    border-bottom: none;
     margin-bottom: 0;
   }
 
@@ -30,6 +39,9 @@
     height: 200px;
     flex-shrink: 0;
     padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .carousel-slide img {
@@ -44,6 +56,14 @@
     cursor: pointer;
   }
 
+  .carousel-slide video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
   .carousel-slide img:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -51,7 +71,6 @@
     position: relative;
   }
 
-  /* WA Coast Specifics (9 images, duplicated -> 18) */
   .track-wa {
     width: calc(300px * 18);
     animation: scroll-wa 60s linear infinite;
@@ -67,10 +86,9 @@
     }
   }
 
-  /* Arcterx Specifics (20 images, duplicated -> 40) */
   .track-arcterx {
     width: calc(300px * 40);
-    animation: scroll-arcterx 100s linear infinite;
+    animation: scroll-arcterx 150s linear infinite;
   }
 
   @keyframes scroll-arcterx {
@@ -99,6 +117,21 @@
     }
   }
 
+  .track-riot {
+    width: calc(300px * 8);
+    animation: scroll-riot 36s linear infinite;
+  }
+
+  @keyframes scroll-riot {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-300px * 4));
+    }
+  }
+
   .carousel-container:hover .carousel-track {
     animation-play-state: paused;
   }
@@ -114,7 +147,56 @@
 
   h2.project-title {
     color: #2c3e50;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  h2.project-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2c3e50);
+    border-radius: 3px;
+  }
+
+  .project-description {
+    color: #34495e;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 0.3px;
+  }
+
+  .project-cta {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 12px 32px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
     font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+  }
+
+  .project-cta:hover {
+    background: linear-gradient(135deg, #2980b9, #1f618d);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(52, 152, 219, 0.4);
+    color: white;
+    text-decoration: none;
   }
 </style>
 {% endblock %} {% block content %}
@@ -130,9 +212,17 @@
 <section class="project-section" id="arcterx">
   <div class="row align-items-center mb-4">
     <div class="col-lg-8 mx-auto text-center">
-      <h2 class="project-title mb-3">Arcterx</h2>
-      <p class="fs-5 text-secondary">
-        Detailed visualizations and data collection from the Arcterx missions.
+      <h2 class="project-title mb-3">ARCTERX</h2>
+      <p class="project-description">
+        In the Western Pacific, the combination of the Kuroshio Current, the
+        monsoon, strong tides, and the dramatic topography create a rich soup of
+        ocean features, such as eddies and filaments. The Island Arc Turbulent
+        Eddy Regional Exchange (ARCTERX) DRI is using a fleet of autonomous
+        vehicles, models, and remote sensing products to better quantify
+        interactions between features spanning scales from 1 - 100 km. Through
+        this effort, Glider-Research-Group-supported Slocum gliders and
+        turbulence sensors are uncovering the complex mechanisms dissipating
+        ocean energy.
       </p>
     </div>
   </div>
@@ -382,13 +472,17 @@
       </div>
     </div>
   </div>
+
+  <div class="text-center mt-4">
+    <a href="#arcterx" class="project-cta">Learn More About ARCTERX</a>
+  </div>
 </section>
 
 <section class="project-section" id="wa-coast">
   <div class="row align-items-center mb-4">
     <div class="col-lg-8 mx-auto text-center">
       <h2 class="project-title mb-3">Washington Coast Monitoring</h2>
-      <p class="fs-5 text-secondary">
+      <p class="project-description">
         Deploying autonomous underwater gliders off the Washington Coast to
         monitor critical oceanographic parameters. This initiative helps track
         seasonal upwelling, hypoxia events, and ecosystem health in the
@@ -510,13 +604,17 @@
       </div>
     </div>
   </div>
+
+  <div class="text-center mt-4">
+    <a href="#wa-coast" class="project-cta">Explore Washington Coast Data</a>
+  </div>
 </section>
 
 <section class="project-section" id="th-line">
   <div class="row align-items-center mb-4">
     <div class="col-lg-8 mx-auto text-center">
       <h2 class="project-title mb-3">TH-Line</h2>
-      <p class="fs-5 text-secondary">Ongoing observations along the TH-Line.</p>
+      <p class="project-description">Ongoing observations along the TH-Line.</p>
     </div>
   </div>
 
@@ -623,6 +721,88 @@
       </div>
     </div>
   </div>
-</section>
 
-{% endblock %}
+  <div class="text-center mt-4">
+    <a href="#th-line" class="project-cta">Discover TH-Line Research</a>
+  </div>
+</section>
+<section class="project-section" id="riot">
+  <div class="row align-items-center mb-4">
+    <div class="col-lg-8 mx-auto text-center">
+      <h2 class="project-title mb-3">RIOT</h2>
+      <p class="project-description">
+        Interior submesoscale currents (1 - 10 km), occurring below the ocean
+        mixed layer, are thought to facilitate heat transport and pollutant
+        dispersal, but are difficult to observe. The Glider Research Group is
+        working to develop a new underwater sensing network to study interior
+        currents for the Researching Interior Ocean Trajectories (RIOT) DRI. Our
+        Slocum gliders will become an integral component of a large underwater
+        network of autonomous underwater robots. The robotic network will
+        provide a unique view on the interior submesoscale.
+      </p>
+    </div>
+  </div>
+  <div class="carousel-container">
+    <div class="carousel-track track-riot">
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_1.png' %}"
+          alt="RIOT Image 1"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_2.png' %}"
+          alt="RIOT Image 2"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_3.png' %}"
+          alt="RIOT Image 3"
+        />
+      </div>
+      <div class="carousel-slide">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source
+            src="{% static 'images/projects/riot/Glider_deployment_video.mp4' %}"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_1.png' %}"
+          alt="RIOT Image 1"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_2.png' %}"
+          alt="RIOT Image 2"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/projects/riot/image_3.png' %}"
+          alt="RIOT Image 3"
+        />
+      </div>
+      <div class="carousel-slide">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source
+            src="{% static 'images/projects/riot/Glider_deployment_video.mp4' %}"
+            type="video/mp4"
+          />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="text-center mt-4">
+    <a href="#riot" class="project-cta">Learn More About RIOT</a>
+  </div>
+  {% endblock %}
+</section>

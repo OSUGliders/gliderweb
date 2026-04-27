@@ -1,11 +1,19 @@
 from django.shortcuts import render
 import plotly.express as px
 from VisualizeMultipleGliders.models import Glider, Glider_Research_Data
+from VisualizeMultipleGliders.slocum_documents import (
+    get_slocum_documents_context,
+)
+from VisualizeMultipleGliders.seaglider_documents import (
+    get_seaglider_documents_context,
+)
 import pandas as pd
 import numpy as np
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+
+
 def glider_map_view(request):
     return render(request, 'gliderdata/glider_map.html')
 def remove_nan(obj):
@@ -85,10 +93,18 @@ def projects(request):
     return render(request, "gliderdata/projects.html")
 
 def slocum(request):
-    return render(request, "gliderdata/slocum.html")
+    return render(
+        request,
+        "gliderdata/slocum.html",
+        get_slocum_documents_context(),
+    )
 
 def seaglider(request):
-    return render(request, "gliderdata/seaglider.html")
+    return render(
+        request,
+        "gliderdata/seaglider.html",
+        get_seaglider_documents_context(),
+    )
 
 def statistics(request):
     return render(request, "gliderdata/statistics.html")

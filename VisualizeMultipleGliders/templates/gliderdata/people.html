@@ -1,9 +1,402 @@
-{% extends 'gliderdata/base.html' %} {% block content %}
-<section id="people">
-  <h2>People</h2>
-  <p>
-    Meet the researchers, students, and staff involved in the Glider Research
-    Group.
-  </p>
-</section>
+{% extends 'gliderdata/base.html' %} {% load static %} {% block extra_head %}
+<style>
+  .people-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .page-title {
+    color: #004b87;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    margin: 0 auto 4rem auto;
+    padding: 20px 0;
+    background-color: #fff;
+  }
+
+  .carousel-track {
+    display: flex;
+    width: max-content;
+    animation: scroll-group 60s linear infinite;
+  }
+
+  .carousel-slide {
+    width: auto;
+    height: 500px;
+    flex-shrink: 0;
+    padding: 0 10px;
+  }
+
+  .carousel-slide img {
+    width: auto;
+    height: 100%;
+    max-width: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-slide img:hover {
+    transform: scale(1.02);
+  }
+
+  @keyframes scroll-group {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .carousel-container:hover .carousel-track {
+    animation-play-state: paused;
+  }
+
+  .team-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px 15px;
+    text-align: center;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+    height: 100%;
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  }
+
+  .avatar-placeholder {
+    width: 80px;
+    height: 80px;
+    background-color: #f0f2f5;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #adb5bd;
+  }
+
+  .avatar-placeholder svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    object-fit: cover;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .team-name {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2px;
+    font-size: 1.1rem;
+  }
+
+  .team-role {
+    color: #004b87;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+
+  .team-bio {
+    color: #6c757d;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin-bottom: 0;
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 10px;
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container py-5">
+  <div class="people-header">
+    <h1 class="page-title">Meet the Team</h1>
+    <p class="lead text-muted">
+      The researchers, engineers, and students behind the Glider Research Group.
+    </p>
+  </div>
+
+  {% if not group_photos_missing %}
+  <div class="carousel-container">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1527.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1557.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/43784C3A-2BE7-4F8E-9AF8-82DD4674AE39_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/6183ED2E-8B29-45D6-8F6D-0C368686FDBE_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1527.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/IMG_1557.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/43784C3A-2BE7-4F8E-9AF8-82DD4674AE39_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+      <div class="carousel-slide">
+        <img
+          src="{% static 'images/people/group_pictures/6183ED2E-8B29-45D6-8F6D-0C368686FDBE_1_201_a.jpeg' %}"
+          alt="Group Photo"
+        />
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="row g-4">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold text-dark">Our Members</h2>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Jesse_img.png' %}"
+          alt="Jesse Cusack"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Jesse Cusack</h3>
+        <div class="team-role">Assistant Professor</div>
+        <p class="team-bio">
+          Assistant Professor in Physical Oceanography at OSU. Studies ocean
+          physics from turbulence to mesoscale eddies and their climate impact.
+          Combines observations with numerical simulations and practices open
+          science.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Jack_img.png' %}"
+          alt="Jack Barth"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Jack Barth</h3>
+        <div class="team-role">Professor</div>
+        <p class="team-bio">
+          Executive Director of the Marine Studies Initiative (MSI) and
+          Professor of Earth, Ocean and Atmospheric Sciences at OSU. Leads
+          nationally ranked academic programs and premier research facilities.
+        </p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Kipp_img.png' %}"
+          alt="Kipp Shearman"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Kipp Shearman</h3>
+        <div class="team-role">Professor</div>
+        <p class="team-bio">
+          Professor studying physical processes in coastal oceans. Interested in
+          all aspects of coastal physics, with particular focus on the dynamics
+          of density field structure over the continental shelf.
+        </p>
+      </div>
+    </div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Pat_img.png' %}"
+          alt="Pat Welch"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Pat Welch</h3>
+        <div class="team-role">Research Collaborator</div>
+        <p class="team-bio">
+          Physicist studying energetic marine environments, including
+          topographic wakes. Ph.D. in Physics from University of Virginia, M.S.
+          in Mathematics from George Washington University.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Stuart_img.png' %}"
+          alt="Stuart Pearce"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Stuart Pearce</h3>
+        <div class="team-role">Senior Faculty Research Assistant II</div>
+        <p class="team-bio">
+          Senior Technician for the OOI with expertise in operational
+          oceanography, instrument operations, and glider fleet management. Has
+          worked with the Ocean Observatories Initiative since 2011.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Brian_img.png' %}"
+          alt="Brian VerWey"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Brian VerWey</h3>
+        <div class="team-role">Senior Faculty Research Assistant I</div>
+        <p class="team-bio">
+          Research assistant at OSU with 12+ years in marine and freshwater
+          ecosystem science. Supports nearshore and open ocean projects,
+          specializing in mooring and glider operations.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Jace_img.png' %}"
+          alt="Jace Marquardt"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Jace Marquardt</h3>
+        <div class="team-role">Faculty Research Assistant</div>
+        <p class="team-bio">
+          Processes large-scale oceanographic datasets for public consumption
+          and research accessibility.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Mareike_img.png' %}"
+          alt="Mareike Koerner"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Mareike Koerner</h3>
+        <div class="team-role">Postdoc</div>
+        <p class="team-bio"></p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <img
+          src="{% static 'images/people/individual_pictures/Swathi_img.png' %}"
+          alt="Swathi Gangi"
+          class="avatar-img"
+        />
+        <h3 class="team-name">Swathi Gangi</h3>
+        <div class="team-role">Developer</div>
+        <p class="team-bio">
+          M.S. student in Computer Science focused on Generative AI research and
+          software engineering. Developer for the Glider Research Group.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-4 mt-5">
+    <div class="col-12 text-center mb-4">
+      <h2 class="fw-bold text-dark">Past Students</h2>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Kai-Fu Chang</h3>
+        <div class="team-role">MS</div>
+        <p class="team-bio"></p>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+      <div class="team-card">
+        <div class="avatar-placeholder">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="48"
+            height="48"
+            fill="currentColor"
+            class="bi bi-person-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
+            />
+          </svg>
+        </div>
+        <h3 class="team-name">Chad Gibson</h3>
+        <div class="team-role">MS</div>
+        <p class="team-bio"></p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

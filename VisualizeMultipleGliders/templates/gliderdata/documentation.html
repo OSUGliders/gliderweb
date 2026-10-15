@@ -1,0 +1,156 @@
+{% extends "gliderdata/base.html" %} {% block content %}
+<div
+  class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+>
+  <div>
+    <h1 class="mb-0">Documentation</h1>
+    <small class="text-muted"
+      >Master and reference documents for Slocum and SeaGlider</small
+    >
+  </div>
+  <div class="text-end">
+    <a
+      href="{{ masterdata_url }}"
+      class="btn btn-outline-secondary btn-sm"
+      target="_blank"
+      rel="noopener"
+      >Masterdata (Slocum)</a
+    >
+  </div>
+</div>
+
+<div class="row g-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="card-title">Slocum Documentation</h3>
+        <p class="text-muted small">
+          Training, manuals and technical references.
+        </p>
+        <ul id="slocum-list" class="list-group list-group-flush doc-list">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="https://gliderfmc0.ceoas.oregonstate.edu/sfmc/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="fw-semibold text-primary"
+                >SFMC Login</a
+              >
+              <div class="small text-muted">
+                Slocum Fleet Mission Control portal login and real-time
+                operations.
+              </div>
+            </div>
+          </li>
+          {% for doc in slocum_training_manuals %}
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="{{ doc.url }}"
+                target="_blank"
+                rel="noopener"
+                class="fw-semibold"
+                >{{ doc.title }}</a
+              >
+              <div class="small text-muted">{{ doc.summary }}</div>
+            </div>
+            <span class="badge bg-light text-dark small align-self-start"
+              >{{ doc.tag }}</span
+            >
+          </li>
+          {% endfor %} {% for doc in slocum_technical_references %}
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="{{ doc.url }}"
+                target="_blank"
+                rel="noopener"
+                class="fw-semibold"
+                >{{ doc.title }}</a
+              >
+              <div class="small text-muted">{{ doc.summary }}</div>
+            </div>
+            <span class="badge bg-light text-dark small align-self-start"
+              >{{ doc.tag }}</span
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h3 class="card-title">SeaGlider Documentation</h3>
+        <p class="text-muted small">Operations and technical guides.</p>
+        <ul id="seaglider-list" class="list-group list-group-flush doc-list">
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="https://osugrg.seaglider.pub/dash"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="fw-semibold text-primary"
+                >Seaglider.pub Dashboard</a
+              >
+              <div class="small text-muted">
+                Oregon State University Glider Research Group Seaglider
+                dashboard.
+              </div>
+            </div>
+          </li>
+          {% for doc in seaglider_operations %}
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="{{ doc.url }}"
+                target="_blank"
+                rel="noopener"
+                class="fw-semibold"
+                >{{ doc.title }}</a
+              >
+              <div class="small text-muted">{{ doc.summary }}</div>
+            </div>
+            <span class="badge bg-light text-dark small align-self-start"
+              >{{ doc.tag }}</span
+            >
+          </li>
+          {% endfor %} {% for doc in seaglider_technical %}
+          <li
+            class="list-group-item d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <a
+                href="{{ doc.url }}"
+                target="_blank"
+                rel="noopener"
+                class="fw-semibold"
+                >{{ doc.title }}</a
+              >
+              <div class="small text-muted">{{ doc.summary }}</div>
+            </div>
+            <span class="badge bg-light text-dark small align-self-start"
+              >{{ doc.tag }}</span
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "gliderdata/base.html" %} {% block content %}
+<h1>Deployments</h1>
+
+<section class="mb-4">
+  <h2>Active Deployments</h2>
+  {% if active_deployments %}
+  <ul class="list-group">
+    {% for d in active_deployments %}
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div>
+        <strong>{{ d.id }}</strong>
+        <div class="small text-muted">
+          {% if d.start %}{{ d.start }}{% else %}Start unknown{% endif %} {% if d.end %} — {{ d.end }}{% endif %}
+        </div>
+      </div>
+      <div>
+        <a
+          class="btn btn-sm btn-outline-primary me-2"
+          href="{% url 'glider_map' %}"
+          >Map</a
+        >
+        {% if d.erddap %}
+        <a
+          class="btn btn-sm btn-outline-secondary"
+          href="{{ d.erddap }}"
+          target="_blank"
+          rel="noopener"
+          >Data (ERDDAP)</a
+        >
+        {% else %}
+        <a
+          class="btn btn-sm btn-outline-secondary"
+          href="{% url 'glider_data_to_display' %}?glider={{ d.id }}"
+          >Data (JSON)</a
+        >
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No active deployments found.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>Historical Deployments</h2>
+  {% if historical_deployments %}
+  <ul class="list-group">
+    {% for d in historical_deployments %}
+    <li
+      class="list-group-item d-flex justify-content-between align-items-center"
+    >
+      <div>
+        <strong>{{ d.id }}</strong>
+        <div class="small text-muted">
+          {% if d.start %}{{ d.start }}{% else %}Start unknown{% endif %} — {% if d.end %}{{ d.end }}{% else %}End unknown{% endif %}
+        </div>
+      </div>
+      <div>
+        <a
+          class="btn btn-sm btn-outline-primary me-2"
+          href="{% url 'glider_map' %}"
+          >Map</a
+        >
+        {% if d.erddap %}
+        <a
+          class="btn btn-sm btn-outline-secondary"
+          href="{{ d.erddap }}"
+          target="_blank"
+          rel="noopener"
+          >Data (ERDDAP)</a
+        >
+        {% else %}
+        <a
+          class="btn btn-sm btn-outline-secondary"
+          href="{% url 'glider_data_to_display' %}?glider={{ d.id }}"
+          >Data (JSON)</a
+        >
+        {% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No historical deployments found.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

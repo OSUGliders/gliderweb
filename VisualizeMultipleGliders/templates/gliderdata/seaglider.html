@@ -1,4 +1,4 @@
-{% extends 'gliderdata/base.html' %} {% block extra_head %}
+{% extends 'gliderdata/base.html' %} {% load static %} {% block extra_head %}
 <style>
   .seaglider-library {
     position: relative;
@@ -210,42 +210,43 @@
 {% endblock %} {% block content %}
 <section class="seaglider-library" id="seaglider-documents">
   <div class="seaglider-shell">
-    <div class="seaglider-hero">
-      <span class="seaglider-eyebrow"
-        ><i class="fa-solid fa-book-open"></i> Documents & Resources</span
-      >
-      <h2>
-        SeaGlider documentation, curated for operations and technical work.
-      </h2>
-      <p>
-        A clean document library for pilots, operators, and technical users.
-        Each document opens in a new tab for quick access.
-      </p>
-
-      <div class="stat-grid">
-        <div class="stat-card">
-          <strong>{{ document_total }}</strong>
-          <span>available documents</span>
+    <div class="library-section">
+      <div class="section-heading">
+        <div>
+          <h3>Dashboard</h3>
         </div>
-        <div class="stat-card">
-          <strong>{{ operations_and_guides|length }}</strong>
-          <span>Operations & Guides</span>
-        </div>
-        <div class="stat-card">
-          <strong>{{ technical_documentation|length }}</strong>
-          <span>Technical Documentation</span>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="manual-card">
+            <div class="accent" style="background: #123456"></div>
+            <div class="body">
+              <div class="manual-meta">
+                <span class="manual-tag">DASHBOARD</span>
+              </div>
+              <h4>Seaglider.pub</h4>
+              <p>
+                Oregon State University Glider Research Group Seaglider
+                dashboard.
+              </p>
+              <div class="manual-actions">
+                <a
+                  class="manual-link"
+                  href="https://osugrg.seaglider.pub/dash"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  Go to Dashboard
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
 
     <div class="library-section">
-      <div class="section-heading">
-        <div>
-          <h3>Operations &amp; Guides</h3>
-          <p>Day-to-day operating material and workflow guidance.</p>
-        </div>
-      </div>
-
       <div class="row g-4">
         {% for document in operations_and_guides %}
         <div class="col-12 col-md-6 col-lg-4">
@@ -277,16 +278,6 @@
     </div>
 
     <div class="library-section">
-      <div class="section-heading">
-        <div>
-          <h3>Technical Documentation</h3>
-          <p>
-            Reference material for formats, system behavior, and support
-            tooling.
-          </p>
-        </div>
-      </div>
-
       <div class="row g-4">
         {% for document in technical_documentation %}
         <div class="col-12 col-md-6 col-lg-4">

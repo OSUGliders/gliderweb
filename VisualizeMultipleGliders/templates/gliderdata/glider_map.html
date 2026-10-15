@@ -115,14 +115,16 @@
       });
       const gliderIcons = {
         SeaGlider1: L.icon({
-          iconUrl: "{% static 'images/SeaGlider_607.jpeg' %}",
-          iconSize: [40, 40],
-          iconAnchor: [20, 20],
+          iconUrl: "{% static 'images/seaglider_logo.svg' %}",
+          iconSize: [90, 45],
+          iconAnchor: [45, 22.5],
+          popupAnchor: [0, -22],
         }),
         SlocumGlider1: L.icon({
-          iconUrl: "{% static 'images/SlocumGlider.jpeg' %}",
-          iconSize: [40, 40],
-          iconAnchor: [20, 20],
+          iconUrl: "{% static 'images/slocum_logo.svg' %}",
+          iconSize: [90, 45],
+          iconAnchor: [45, 22.5],
+          popupAnchor: [0, -22],
         }),
       };
       const mapboxOSM = L.tileLayer(
@@ -159,6 +161,7 @@
               oxygen: entry.oxygen,
               startOfCoverage: entry.glider__startOfCoverage,
               endOfCoverage: entry.glider__endOfCoverage,
+              summary: entry.glider__summary,
             });
           });
 
@@ -170,8 +173,20 @@
             allLatLngs.push(...latlngs);
 
             const last = track[track.length - 1];
+
+            const isSlocum =
+              (last.summary && last.summary.toLowerCase().includes("slocum")) ||
+              gliderId.toLowerCase().includes("slocum") ||
+              (gliderId.toLowerCase().includes("osu") &&
+                !gliderId.toLowerCase().includes("sg") &&
+                !gliderId.toLowerCase().includes("266"));
+
+            const iconToUse = isSlocum
+              ? gliderIcons.SlocumGlider1
+              : gliderIcons.SeaGlider1;
+
             const marker = L.marker([last.latitude, last.longitude], {
-              icon: gliderIcons.SeaGlider1,
+              icon: iconToUse,
             }).addTo(map);
 
             marker.bindPopup(

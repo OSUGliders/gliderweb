@@ -7,11 +7,16 @@ from VisualizeMultipleGliders.slocum_documents import (
 from VisualizeMultipleGliders.seaglider_documents import (
     get_seaglider_documents_context,
 )
+from django.utils import timezone
 import pandas as pd
 import numpy as np
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+import io
+import csv
+import urllib.request
+import urllib.parse
 
 
 def glider_map_view(request):
@@ -74,9 +79,12 @@ def plot_glider_data(request):
         except Exception as e:
             return JsonResponse({'plot_html': f"<p>Error: {str(e)}</p>"})
 def glider_data_to_display(request):
+    glider_param = request.GET.get('glider')
+    qs = Glider_Research_Data.objects
+    if glider_param:
+        qs = qs.filter(glider__glider_id=glider_param)
     data = list(
-        Glider_Research_Data.objects
-        .values('glider__glider_id','glider__startOfCoverage',
+        qs.values('glider__glider_id','glider__startOfCoverage',
             'glider__endOfCoverage','precise_time', 'precise_lat', 'precise_lon', 'depth','temperature', 'oxygen','salinity')
     )
     cleaned_data = remove_nan(data)
@@ -92,25 +100,83 @@ def people(request):
 def projects(request):
     return render(request, "gliderdata/projects.html")
 
-def slocum(request):
-    return render(
-        request,
-        "gliderdata/slocum.html",
-        get_slocum_documents_context(),
-    )
 
-def seaglider(request):
-    return render(
-        request,
-        "gliderdata/seaglider.html",
-        get_seaglider_documents_context(),
-    )
+def deployments(request):
+    now = timezone.now()
+    gliders = Glider.objects.all().order_by('-startOfCoverage')
+    active = []
+    historical = []
+
+    def find_erddap_dataset(glider_id):
+        base_tokens = []
+        if not glider_id:
+            return None
+        base_tokens.append(glider_id)
+        if '_' in glider_id:
+            base_tokens.append(glider_id.split('_')[0])
+        if '-' in glider_id:
+            base_tokens.append(glider_id.split('-')[0])
+        digits = ''.join([c for c in glider_id if c.isdigit()])
+        if digits:
+            base_tokens.append(digits)
+
+        seen = set()
+        for tok in base_tokens:
+            if not tok or tok in seen:
+                continue
+            seen.add(tok)
+            try:
+                q = urllib.parse.quote(tok)
+                url = f"https://gliders.ioos.us/erddap/search/index.csv?searchFor={q}&itemsPerPage=10"
+                req = urllib.request.Request(url, headers={'User-Agent':'gliderweb/1.0'})
+                with urllib.request.urlopen(req, timeout=4) as resp:
+                    data = resp.read().decode('utf-8', errors='replace')
+                f = io.StringIO(data)
+                reader = csv.reader(f)
+                header = next(reader, None)
+                for row in reader:
+                    if row and row[0]:
+                        return row[0]
+            except Exception:
+                continue
+        return None
+    for g in gliders:
+        entry = {
+            'id': g.glider_id,
+            'start': g.startOfCoverage,
+            'end': g.endOfCoverage,
+        }
+        found = find_erddap_dataset(g.glider_id)
+        if found:
+            entry['erddap'] = f"https://gliders.ioos.us/erddap/tabledap/{found}.html"
+        else:
+            entry['erddap'] = f"https://gliders.ioos.us/erddap/tabledap/{g.glider_id}.html"
+        if g.endOfCoverage is None or (g.endOfCoverage and g.endOfCoverage > now):
+            active.append(entry)
+        else:
+            historical.append(entry)
+    return render(request, 'gliderdata/deployments.html', {'active_deployments': active, 'historical_deployments': historical})
+
+
+def documentation(request):
+    slocum_ctx = get_slocum_documents_context()
+    seaglider_ctx = get_seaglider_documents_context()
+    masterdata_url = 'https://gliderfs.coas.oregonstate.edu/gliderweb/masterdata/'
+
+    context = {
+        'slocum_training_manuals': slocum_ctx.get('training_manuals', []),
+        'slocum_technical_references': slocum_ctx.get('technical_references', []),
+        'seaglider_operations': seaglider_ctx.get('operations_and_guides', []),
+        'seaglider_technical': seaglider_ctx.get('technical_documentation', []),
+        'masterdata_url': masterdata_url,
+    }
+    return render(request, 'gliderdata/documentation.html', context)
 
 def statistics(request):
     return render(request, "gliderdata/statistics.html")
 
-def links(request):
-    return render(request, "gliderdata/links.html")
+def data_products(request):
+    return render(request, "gliderdata/data_products.html")
 
 def publications(request):
     return render(request, "gliderdata/publications.html")

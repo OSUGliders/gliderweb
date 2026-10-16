@@ -1,0 +1,66 @@
+{% extends 'gliderdata/base.html' %} {% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8 col-md-10">
+    <div
+      class="card shadow-sm border-0 mb-4"
+      style="border-radius: 12px; overflow: hidden"
+    >
+      <div
+        class="card-header text-white py-3"
+        style="background-color: #123456"
+      >
+        <h2 class="h4 mb-0">
+          <i class="fas fa-database me-2"></i>Data Products
+        </h2>
+      </div>
+      <div class="card-body p-0">
+        <div class="list-group list-group-flush">
+          <a
+            href="https://gliders.ioos.us/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="list-group-item list-group-item-action py-3 d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <h5 class="mb-1 text-primary">IOOS Glider DAC</h5>
+              <p class="mb-0 text-muted small">
+                Integrated Ocean Observing System Glider Data Assembly Center.
+              </p>
+            </div>
+            <i class="fas fa-external-link-alt text-muted"></i>
+          </a>
+          <a
+            href="https://gliders.ioos.us/map/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="list-group-item list-group-item-action py-3 d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <h5 class="mb-1 text-primary">IOOS Map</h5>
+              <p class="mb-0 text-muted small">
+                Interactive map showing active and historical glider deployments
+                across the US IOOS.
+              </p>
+            </div>
+            <i class="fas fa-external-link-alt text-muted"></i>
+          </a>
+          <a
+            href="https://www.nanoos.org/products/cui_oregon/cui.php"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="list-group-item list-group-item-action py-3 d-flex align-items-center justify-content-between"
+          >
+            <div>
+              <h5 class="mb-1 text-primary">Upwelling index</h5>
+              <p class="mb-0 text-muted small">
+                NANOOS Cumulative Upwelling Index for Oregon coastal waters.
+              </p>
+            </div>
+            <i class="fas fa-external-link-alt text-muted"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

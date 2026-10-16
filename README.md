@@ -119,3 +119,74 @@ Use `.env.example` as a template (which is present inside the gliderweb repo) an
    DB_PORT="5432"
    ```
 3. Save the file and exit (Ctrl + O, Enter, then Ctrl + X).
+
+## 4. How to Pull Glider Data into the Database
+
+1. **Apply database migrations** — this sets up all required tables in the database:
+
+   ```bash
+   python manage.py migrate
+   ```
+
+2. **Import glider data** from `.nc` (NetCDF) files using the custom management command:
+
+   ```bash
+   python manage.py import_gliderdata <path/to/file1.nc> <path/to/file2.nc> ...
+   ```
+
+   **Example:**
+
+   ```bash
+   python manage.py import_gliderdata \
+     VisualizeMultipleGliders/management/commands/<File-name_1>.nc \
+     VisualizeMultipleGliders/management/commands/<File-name_2>.nc
+   ```
+
+   > You can pass one or more `.nc` files as arguments. A confirmation message will appear showing how many rows were imported per file.
+
+3. **Verify the import** by connecting to the database and running a row count:
+
+   ```bash
+   psql -U "username" -d "database_name"
+   ```
+
+   ```sql
+   SELECT COUNT(*) FROM <table_name>;
+   ```
+
+   _(Replace `<table_name>` with your actual Django model table name. Django auto-generates table names in the format `<appname>_<modelname>`.)\_
+
+   Type `\q` to exit.
+
+## 5. Serving the Website on the VM
+
+1. **Collect static files** before starting the server:
+
+   ```bash
+   python manage.py collectstatic
+   ```
+
+2. **Start Gunicorn** to serve the application:
+
+   ```bash
+   gunicorn --workers 3 --bind unix:/run/gunicorn.sock trackglider.wsgi:application
+   ```
+
+3. **Start Nginx** to handle incoming traffic:
+
+   ```bash
+   sudo systemctl start nginx
+   sudo systemctl reload nginx
+   ```
+
+4. **Verify the site is running** — open a browser and navigate to:
+
+   ```
+   https://<host_domain>
+   ```
+
+5. **If testing locally**, use SSH port forwarding from your host machine terminal:
+   ```bash
+   ssh -L 8000:localhost:8000 <your_vm_username>@<VM_IP_ADDRESS>
+   ```
+   Then open `http://localhost:8000` in your browser.

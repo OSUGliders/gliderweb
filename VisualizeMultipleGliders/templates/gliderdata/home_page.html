@@ -1,6 +1,11 @@
-{% extends 'gliderdata/base.html' %} {% block hero %}
+{% extends 'gliderdata/base.html' %} {% load static %} {% block hero %}
 <div class="hero">
-  <div>
+  <img
+    class="hero-image"
+    src="{% static 'images/projects/arcterx/IMG_8851.jpeg' %}"
+    alt="ARCTERX ocean research at sunset"
+  />
+  <div class="hero-content">
     <h1 class="display-3 fw-bold">Welcome to the Glider Research Group</h1>
     <p class="lead">Exploring the unknown depths of our oceans</p>
   </div>
@@ -11,6 +16,24 @@
   <p>
     Supported by NSF, Moore Foundation, Agouron Institute, and other sponsors.
   </p>
-  <p><a href="#" class="btn btn-primary">Funding Acknowledgment Page</a></p>
+</section>
+
+<section id="admissions" class="text-center py-5 border-top">
+  <h2 class="mb-3">Graduate Program &amp; Admissions</h2>
+  <p class="mx-auto" style="max-width: 600px">
+    Interested in joining the Glider Research Group? Explore the College of
+    Earth, Ocean, and Atmospheric Sciences Graduate Program at Oregon State
+    University.
+  </p>
+  <p class="mt-3">
+    <a
+      href="https://ceoas.oregonstate.edu/academics/ocean-earth-and-atmospheric-sciences-graduate-program"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-outline-primary"
+    >
+      Graduate Admissions &amp; Program
+    </a>
+  </p>
 </section>
 {% endblock %}
